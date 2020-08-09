@@ -1,0 +1,51 @@
+{
+  "name": "lpp-campaign",
+  "version": "2.0.0-beta.0",
+  "description": "Simple campaign plugin with reviewer for liquidpledging.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+   "lint": "solium --dir contracts",
+   "prepublish": "npm run build",
+
+    "dev": "lite-server",
+    
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Giveth/lpp-campaign.git"
+  },
+  "keywords": [
+    "liquid",
+    "pledging",
+    "ethereum",
+    "solidity",
+    "campaign"
+  ],
+  "author": "perissology",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Giveth/lpp-campaign/issues"
+  },
+  "homepage": "https://github.com/Giveth/lpp-campaign#readme",
+  "dependencies": {
+    "@aragon/os": "4.0.1",
+    "chai": "^4.1.2",
+    "embark": "4.0.0-beta.0",
+    "giveth-liquidpledging": "2.0.0-beta.2"
+  },
+  "devDependencies": {
+    "embark-solc": "git+https://git@github.com/embark-framework/embark-solc.git#develop",
+    "eslint": "^4.3.0",
+    "eth-contract-class": "^0.0.13-beta.1",
+    "lerna": "^2.2.0",
+    "solium": "^1.0.9",
+    "web3": "1.0.0-beta.34"
+  }
+}

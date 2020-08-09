@@ -1,0 +1,6 @@
+config
+chains.json
+coverage
+.embark
+.vscode
+.idea
