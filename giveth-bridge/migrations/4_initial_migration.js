@@ -1,7 +1,7 @@
-const IForeignGivethBridge = artifacts.require("IForeignGivethBridge");
+const Pausable = artifacts.require("./lib/Pausable");
 
 module.exports = function(deployer) {
-  deployer.deploy(IForeignGivethBridge);
+  deployer.deploy(Pausable);
 };
 
 //29524947,

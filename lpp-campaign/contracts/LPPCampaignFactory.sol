@@ -1,10 +1,10 @@
 pragma solidity ^0.4.24;
 
 import "./LPPCampaign.sol";
-import "@aragon/os/contracts/common/VaultRecoverable.sol";
+import "./@aragon/os/contracts/common/IVaultRecoverable.sol";
 import "giveth-liquidpledging/contracts/LiquidPledging.sol";
 import "giveth-liquidpledging/contracts/LPConstants.sol";
-import "giveth-liquidpledging/contracts/lib/aragon/IKernelEnhanced.sol";
+import "./giveth-liquidpledging/contracts/lib/aragon/IKernelEnhanced.sol";
 
 contract LPPCampaignFactory is LPConstants, VaultRecoverable {
     IKernelEnhanced public kernel;

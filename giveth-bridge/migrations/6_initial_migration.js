@@ -1,7 +1,7 @@
-const Pausable = artifacts.require("../lib/Pausable");
+const Controlled = artifacts.require("minimetoken/contracts/Controlled");
 
 module.exports = function(deployer) {
-  deployer.deploy(Pausable);
+  deployer.deploy(Controlled);
 };
 
 //29524947,

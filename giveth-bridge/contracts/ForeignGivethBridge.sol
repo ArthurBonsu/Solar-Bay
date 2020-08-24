@@ -17,13 +17,18 @@ pragma solidity ^0.4.21;
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import "giveth-common-contracts/contracts/Escapable.sol";
-import "minimetoken/contracts/MiniMeToken.sol";
+import "./giveth-common-contracts/contracts/Escapable.sol";
 import "./lib/Pausable.sol";
+import "./minimetoken/contracts/MiniMeToken.sol";
+
 import "./IForeignGivethBridge.sol";
 
 
 contract ForeignGivethBridge is IForeignGivethBridge, Escapable, Pausable, TokenController {
+          
+     
+
+
     MiniMeTokenFactory public tokenFactory;
     address public liquidPledging;
     address public depositor;
@@ -64,10 +69,12 @@ contract ForeignGivethBridge is IForeignGivethBridge, Escapable, Pausable, Token
         address _depositor,
         address[] mainTokens,
         address[] sideTokens
-    ) Escapable(_escapeHatchCaller, _escapeHatchDestination) public 
-    {
-        require(_tokenFactory != 0);
-        require(_liquidPledging != 0);
+               ) public {
+
+       Escapable myescapable  = new  Escapable(_escapeHatchCaller, _escapeHatchDestination);
+    
+            require(_tokenFactory != 0);
+        require(_liquidPledging != 0 );
         require(mainTokens.length == sideTokens.length);
 
         tokenFactory = MiniMeTokenFactory(_tokenFactory);
@@ -81,9 +88,12 @@ contract ForeignGivethBridge is IForeignGivethBridge, Escapable, Pausable, Token
             tokenMapping[mainToken] = sideToken;
             inverseTokenMapping[sideToken] = mainToken;
             emit TokenAdded(mainToken, sideToken);
-        }
+      
+    }
     }
 
+    
+     
 ////////////////////
 // Public Functions 
 ////////////////////

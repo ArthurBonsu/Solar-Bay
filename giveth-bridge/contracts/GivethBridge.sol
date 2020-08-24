@@ -17,7 +17,7 @@ pragma solidity ^0.4.21;
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import "giveth-common-contracts/contracts/ERC20.sol";
+import "./giveth-common-contracts/contracts/ERC20.sol";
 import "./lib/FailClosedVault.sol";
 
 

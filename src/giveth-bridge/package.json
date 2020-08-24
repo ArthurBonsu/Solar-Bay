@@ -18,8 +18,8 @@
         "lint": "solium --dir contracts",
         "start": "react-scripts start",
         "prepublish": "npm run build",
-        "serve": "npm run build && pm2 startOrRestart ecosystem.config.js --env production",
-        "deploy-local": "ENVIRONMENT=test babel-node ./deploy-local/bridge-local"
+        "serve": "npm run build && pm2 startOrRestart ecosystem.config.js --env production"
+        
     },
     "nyc": {
         "require": [
@@ -64,7 +64,8 @@
         "request-promise": "^4.2.2",
         "semaphore": "^1.1.0",
         "uuid": "^3.2.1",
-        "web3": "1.0.0-beta.34",
+        "web3": "^1.0.0-beta.55",
+        "webpack": "^4.0.0",
         "winston": "^2.4.1"
     },
     "devDependencies": {

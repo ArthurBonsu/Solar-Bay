@@ -24,6 +24,8 @@ import "./IForeignGivethBridge.sol";
 
 
 contract ForeignGivethBridge is IForeignGivethBridge, Escapable, Pausable, TokenController {
+    
+    
     MiniMeTokenFactory public tokenFactory;
     address public liquidPledging;
     address public depositor;
