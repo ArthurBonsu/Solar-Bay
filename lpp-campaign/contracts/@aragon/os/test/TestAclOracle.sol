@@ -1,6 +1,6 @@
 pragma solidity 0.4.18;
 
-import "truffle/Assert.sol";
+import "/truffle/build/Assert.sol";
 import "../contracts/acl/ACL.sol";
 
 

@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-import "truffle/Assert.sol";
+import "truffle/build/Assert.sol";
 
 // Based on Simon de la Rouviere method: http://truffleframework.com/tutorials/testing-for-throws-in-solidity-tests
 
