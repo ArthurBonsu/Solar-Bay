@@ -1,11 +1,17 @@
 pragma solidity 0.4.18;
 
-import "../lib/ens/AbstractENS.sol";
-import "../ens/ENSSubdomainRegistrar.sol";
-import "../factory/AppProxyFactory.sol";
-import "../apps/AragonApp.sol";
-import "../acl/ACL.sol";
-import "./Repo.sol";
+import "./AbstractENS.sol";
+import "@aragon/os/contracts/acl/ACL.sol";
+ 
+import "./ens/ENSSubdomainRegistrar.sol";
+import "@aragon/os/contracts/factory/AppProxyFactory.sol";
+import "@aragon/os/contracts/apps/AragonApp.sol";
+import "@aragon/os/contracts/acl/ACL.sol";
+import "@aragon/os/contracts/apm/Repo.sol";
+
+
+
+
 
 
 contract APMRegistryConstants {

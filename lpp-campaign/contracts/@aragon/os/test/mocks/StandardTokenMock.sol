@@ -1,7 +1,7 @@
 pragma solidity ^0.4.11;
 
 
-import '../../contracts/lib/zeppelin/token/StandardToken.sol';
+import "@aragon/os/contracts/lib/zeppelin/token/StandardToken.sol";
 
 
 // mock class using StandardToken

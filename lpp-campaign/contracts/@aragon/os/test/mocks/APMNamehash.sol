@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-import "./contracts/ens/ENSConstants.sol";
+import "./ENSConstants.sol";
 
 
 contract APMNamehash is ENSConstants {

@@ -1,6 +1,6 @@
 pragma solidity 0.4.18;
 
-import "../apps/AragonApp.sol";
+import "@aragon/os/contracts/apps/AragonApp.sol";
 
 
 contract Repo is AragonApp {
