@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity >=0.4.0 <0.6.0;
 
 import "../acl/IACL.sol";
 import "../common/IVaultRecoverable.sol";

@@ -1,7 +1,7 @@
 // Inspired by AdEx (https://github.com/AdExNetwork/adex-protocol-eth/blob/b9df617829661a7518ee10f4cb6c4108659dd6d5/contracts/libs/SafeERC20.sol)
 // and 0x (https://github.com/0xProject/0x-monorepo/blob/737d1dc54d72872e24abce5a1dbe1b66d35fa21a/contracts/protocol/contracts/protocol/AssetProxy/ERC20Proxy.sol#L143)
+pragma solidity >=0.4.0 <0.6.0;
 
-pragma solidity ^0.4.24;
 
 import "../lib/zeppelin/token/ERC20.sol";
 

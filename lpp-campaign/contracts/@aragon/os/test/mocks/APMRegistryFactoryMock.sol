@@ -1,4 +1,5 @@
-pragma solidity 0.4.18;
+pragma solidity >=0.4.0 <0.6.0;
+
 
 // without all permissions
 // external ENS

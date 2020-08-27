@@ -1,4 +1,5 @@
-pragma solidity 0.4.18;
+pragma solidity >=0.4.0 <0.6.0;
+
 
 import "../lib/ens/AbstractENS.sol";
 import "../lib/ens/PublicResolver.sol";

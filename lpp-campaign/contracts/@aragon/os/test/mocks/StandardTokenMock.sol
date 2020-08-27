@@ -1,4 +1,5 @@
-pragma solidity ^0.4.11;
+pragma solidity >=0.4.0 <0.6.0;
+
 
 
 import "@aragon/os/contracts/lib/zeppelin/token/StandardToken.sol";

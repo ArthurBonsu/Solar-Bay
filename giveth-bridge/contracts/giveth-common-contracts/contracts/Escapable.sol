@@ -1,4 +1,5 @@
-pragma solidity ^0.4.19;
+pragma solidity >=0.4.0 <0.6.0;
+
 /*
     Copyright 2016, Jordi Baylina
     Contributor: Adrià Massanet <adria@codecontext.io>
