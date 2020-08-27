@@ -1,6 +1,6 @@
 pragma solidity 0.4.18;
 
-import "../../contracts/evmscript/IEVMScriptExecutor.sol";
+import "@aragon/os/contracts/evmscript/IEVMScriptExecutor.sol";
 
 
 contract MockDyingScriptExecutor is IEVMScriptExecutor {

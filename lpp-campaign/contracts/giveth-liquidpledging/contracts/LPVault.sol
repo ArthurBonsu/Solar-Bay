@@ -25,9 +25,13 @@ pragma solidity ^0.4.24;
 ///  to allow for an optional escapeHatch to be implemented in case of issues;
 ///  future versions of this contract will be enabled for tokens
 import "@aragon/os/contracts/apps/AragonApp.sol";
-import "@aragon/os/contracts/common/DepositableStorage.sol";
+import "../../../../lpp-campaign/contracts/@aragon/os/contracts/common/DepositableStorage.sol";
+
+
 import "./ILiquidPledging.sol";
 import "./ILPVault.sol";
+
+
 
 
 /// @dev `LPVault` is a higher level contract built off of the `Escapable`

@@ -1,10 +1,10 @@
 pragma solidity 0.4.18;
 
-import "../lib/ens/AbstractENS.sol";
-import "../lib/ens/PublicResolver.sol";
+import "@aragon/os/contracts/lib/ens/AbstractENS.sol";
+import "@aragon/os/contracts/lib/ens/PublicResolver.sol";
 import "./ENSConstants.sol";
 
-import "../apps/AragonApp.sol";
+import "@aragon/os/contracts/apps/AragonApp.sol";
 
 
 contract ENSSubdomainRegistrar is AragonApp, ENSConstants {

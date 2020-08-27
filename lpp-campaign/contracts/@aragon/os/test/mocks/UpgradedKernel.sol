@@ -1,6 +1,6 @@
 pragma solidity 0.4.18;
 
-import "../../contracts/kernel/Kernel.sol";
+import "@aragon/os/contracts/kernel/Kernel.sol";
 
 
 contract UpgradedKernel is Kernel {

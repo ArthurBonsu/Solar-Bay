@@ -1,7 +1,10 @@
 pragma solidity ^0.4.0;
+import "../../../../lpp-campaign/contracts/@aragon/os/contracts/lib/misc/ERCProxy.sol";
 
-import "@aragon/os/contracts/lib/misc/ERCProxy.sol";
 import "./IACLEnhanced.sol";
+
+
+ 
 
 // This is an extended version of aragon/os/kernel/IKernel.sol which includes all of the
 // functions we need to not have to rely on aragon/os pinned solidity version
