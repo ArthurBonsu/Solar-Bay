@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity >=0.4.0 <0.6.0;
 
 import "./LPPCappedMilestone.sol";
 import "@aragon/os/contracts/factory/AppProxyFactory.sol";

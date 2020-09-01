@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity >=0.4.0 <0.6.0;
 
 contract LiquidPledgingACLHelpers {
     function arr(uint64 a, uint64 b, address c, uint d, address e) internal pure returns(uint[] r) {

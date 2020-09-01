@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity >=0.4.0 <0.6.0;
 
 contract LPConstants {
     // bytes32 constant public VAULT_APP_ID = keccak256("vault");

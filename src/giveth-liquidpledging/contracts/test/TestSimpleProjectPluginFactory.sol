@@ -1,4 +1,4 @@
-pragma solidity ^0.4.11;
+pragma solidity >=0.4.0 <0.6.0;
 
 import "./TestSimpleProjectPlugin.sol";
 import "../LiquidPledging.sol";

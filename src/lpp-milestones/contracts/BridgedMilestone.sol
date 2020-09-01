@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity >=0.4.0 <0.6.0;
 
 /*
     Copyright 2019 RJ Ewing <rj@rjewing.com>

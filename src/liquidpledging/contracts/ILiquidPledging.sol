@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity >=0.4.0 <0.6.0;
 
 interface ILiquidPledging {
     function PLUGIN_MANAGER_ROLE() external pure returns (bytes32);

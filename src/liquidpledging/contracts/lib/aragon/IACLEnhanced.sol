@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity >=0.4.0 <0.6.0;
 
 
 // This is an extended version of aragon/os/acl/IACL.sol which includes all of the

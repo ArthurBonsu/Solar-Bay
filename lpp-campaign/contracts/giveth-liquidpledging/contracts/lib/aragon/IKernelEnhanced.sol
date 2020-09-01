@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity >=0.4.0 <0.6.0;
 
 import "../../../../../../lpp-campaign/contracts/@aragon/os/contracts/lib/misc/ERCProxy.sol";
 import "./IACLEnhanced.sol";
