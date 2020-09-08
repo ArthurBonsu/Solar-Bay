@@ -37,12 +37,12 @@ contract Owned {
     address public owner;
 
     /// @notice The Constructor assigns the message sender to be `owner`
-    function Owned() { owner = msg.sender;}
+    constructor() public { owner = msg.sender;}
 
     /// @notice `owner` can step down and assign some other address to this role
     /// @param _newOwner The address of the new owner. 0x0 can be used to create
     ///  an unowned neutral vault, however that cannot be undone
-    function changeOwner(address _newOwner) onlyOwner {
+    function changeOwner(address _newOwner) public onlyOwner {
         owner = _newOwner;
     }
 }
@@ -73,14 +73,14 @@ contract Campaign is TokenController, Owned {
 /// @param _vaultAddress The address that will store the donated funds
 /// @param _tokenAddress Address of the token contract this contract controls
 
-    function Campaign(
+    constructor(
         uint _startFundingTime,
         uint _endFundingTime,
         uint _maximumFunding,
         address _vaultAddress,
         address _tokenAddress
 
-    ) {
+    ) public {
         require ((_endFundingTime >= now) &&           // Cannot end in the past
             (_endFundingTime > _startFundingTime) &&
             (_maximumFunding <= 10000 ether) &&        // The Beta is limited
@@ -97,7 +97,7 @@ contract Campaign is TokenController, Owned {
 /// `_owner`. Payable is a required solidity modifier for functions to receive
 /// ether, without this modifier functions will throw if ether is sent to them
 
-    function ()  payable {
+    function () external  payable {
         doPayment(msg.sender);
     }
 
@@ -109,7 +109,7 @@ contract Campaign is TokenController, Owned {
 /// have the tokens created in an address of their choosing
 /// @param _owner The address that will hold the newly created tokens
 
-    function proxyPayment(address _owner) payable returns(bool) {
+    function proxyPayment(address _owner) public payable returns(bool) {
         doPayment(_owner);
         return true;
     }
@@ -120,7 +120,7 @@ contract Campaign is TokenController, Owned {
 /// @param _to The destination of the transfer
 /// @param _amount The amount of the transfer
 /// @return False if the controller does not authorize the transfer
-    function onTransfer(address _from, address _to, uint _amount) returns(bool) {
+    function onTransfer(address _from, address _to, uint _amount) public returns(bool) {
         return true;
     }
 
@@ -131,7 +131,7 @@ contract Campaign is TokenController, Owned {
 /// @param _amount The amount in the `approve()` call
 /// @return False if the controller does not authorize the approval
     function onApprove(address _owner, address _spender, uint _amount)
-        returns(bool)
+     public   returns(bool)
     {
         return true;
     }
@@ -169,7 +169,7 @@ contract Campaign is TokenController, Owned {
 ///  Campaign from receiving more ether
 /// @dev `finalizeFunding()` can only be called after the end of the funding period.
 
-    function finalizeFunding() {
+    function finalizeFunding() public {
         require(now >= endFundingTime);
         tokenContract.changeController(0);
     }
@@ -178,7 +178,7 @@ contract Campaign is TokenController, Owned {
 /// @notice `onlyOwner` changes the location that ether is sent
 /// @param _newVaultAddress The address that will receive the ether sent to this
 ///  Campaign
-    function setVault(address _newVaultAddress) onlyOwner {
+    function setVault(address _newVaultAddress) public onlyOwner {
         vaultAddress = _newVaultAddress;
     }
 

@@ -57,7 +57,7 @@ contract GivethBridge is FailClosedVault {
     *   that `securityGuard` can delay a payment so that the owner can cancel
     *   the payment if needed
     */
-    function GivethBridge(
+    constructor(
         address _escapeHatchCaller,
         address _escapeHatchDestination,
         uint _absoluteMinTimeLock,

@@ -62,15 +62,15 @@ contract ForeignGivethBridge is IForeignGivethBridge, Escapable, Pausable, Token
     *   There must be 1 sideToken for every mainToken. Each sidetoken must inherit Controlled.sol 
     *   This contract will need to be set as the controller before the bridge can be used.
     */
-    function ForeignGivethBridge(
+    constructor(
         address _escapeHatchCaller,
         address _escapeHatchDestination, 
         address _tokenFactory,
         address _liquidPledging,
         address _depositor,
-        address[] mainTokens,
-        address[] sideTokens
-               ) public {
+        address[] memory mainTokens,
+        address[] memory sideTokens
+               ) public  {
 
        Escapable myescapable  = new  Escapable(_escapeHatchCaller, _escapeHatchDestination);
     
@@ -145,7 +145,7 @@ contract ForeignGivethBridge is IForeignGivethBridge, Escapable, Pausable, Token
     * @param data The abi encoded data we call `liquidPledging` with. This should be some form
     *  of "donate" on liquidPledging (donate, donateAndCreateGiver, etc);
     */
-    function deposit(address sender, address mainToken, uint amount, bytes32 homeTx, bytes data) onlyDepositor external {
+    function deposit(address sender, address mainToken, uint amount, bytes32 homeTx, bytes calldata data) onlyDepositor external {
         address sideToken = tokenMapping[mainToken];
         // if the mainToken isn't mapped, we can't accept the deposit
         require(sideToken != 0);
@@ -179,7 +179,7 @@ contract ForeignGivethBridge is IForeignGivethBridge, Escapable, Pausable, Token
     *   This should be the same as the mainToken
     * @param tokenSymbol The symbol of the MiniMeToken to be deployed
     */
-    function addToken(address mainToken, string tokenName, uint8 decimals, string tokenSymbol) onlyOwner external {
+    function addToken(address mainToken, string calldata tokenName, uint8 decimals, string calldata tokenSymbol) onlyOwner external {
         // ensure we haven't already mapped this token
         require(tokenMapping[mainToken] == 0);
         MiniMeToken sideToken = new MiniMeToken(tokenFactory, 0x0, 0, tokenName, decimals, tokenSymbol, true);

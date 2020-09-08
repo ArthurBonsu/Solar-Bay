@@ -26,7 +26,7 @@ contract GivethBridgeMock is GivethBridge {
 
     uint public mock_time;
 
-    function GivethBridgeMock(
+    constructor(
         address _escapeHatchCaller,
         address _escapeHatchDestination,
         uint _absoluteMinTimeLock,

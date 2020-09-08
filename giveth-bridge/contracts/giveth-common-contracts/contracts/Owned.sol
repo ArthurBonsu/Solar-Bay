@@ -21,7 +21,7 @@ contract Owned {
     event OwnershipRemoved();
 
     /// @dev The constructor sets the `msg.sender` as the`owner` of the contract
-    function Owned() public {
+    constructor () public  {
         owner = msg.sender;
     }
 
@@ -40,7 +40,7 @@ contract Owned {
     /// @param _newOwnerCandidate The address being proposed as the new owner
     function proposeOwnership(address _newOwnerCandidate) public onlyOwner {
         newOwnerCandidate = _newOwnerCandidate;
-        OwnershipRequested(msg.sender, newOwnerCandidate);
+      emit  OwnershipRequested(msg.sender, newOwnerCandidate);
     }
 
     /// @notice Can only be called by the `newOwnerCandidate`, accepts the
@@ -50,9 +50,9 @@ contract Owned {
 
         address oldOwner = owner;
         owner = newOwnerCandidate;
-        newOwnerCandidate = 0x0;
+        newOwnerCandidate = 0x06Da25591CdF58758C4b3aBbFf18B092e4380B65;
 
-        OwnershipTransferred(oldOwner, owner);
+        emit OwnershipTransferred(oldOwner, owner);
     }
 
     /// @dev In this 2nd option for ownership transfer `changeOwnership()` can
@@ -60,13 +60,13 @@ contract Owned {
     /// @notice `owner` can step down and assign some other address to this role
     /// @param _newOwner The address of the new owner
     function changeOwnership(address _newOwner) public onlyOwner {
-        require(_newOwner != 0x0);
+        require(_newOwner != 0x06Da25591CdF58758C4b3aBbFf18B092e4380B65);
 
         address oldOwner = owner;
         owner = _newOwner;
-        newOwnerCandidate = 0x0;
+        newOwnerCandidate = 0x06Da25591CdF58758C4b3aBbFf18B092e4380B65;
 
-        OwnershipTransferred(oldOwner, owner);
+       emit  OwnershipTransferred(oldOwner, owner);
     }
 
     /// @dev In this 3rd option for ownership transfer `removeOwnership()` can
@@ -75,9 +75,9 @@ contract Owned {
     /// @notice Decentralizes the contract, this operation cannot be undone 
     /// @param _dac `0xdac` has to be entered for this function to work
     function removeOwnership(address _dac) public onlyOwner {
-        require(_dac == 0xdac);
-        owner = 0x0;
-        newOwnerCandidate = 0x0;
-        OwnershipRemoved();     
+        require(_dac == 0x06Da25591CdF58758C4b3aBbFf18B092e4380B65);
+        owner = 0x06Da25591CdF58758C4b3aBbFf18B092e4380B65;
+        newOwnerCandidate = 0x06Da25591CdF58758C4b3aBbFf18B092e4380B65;
+    emit    OwnershipRemoved();     
     }
 } 

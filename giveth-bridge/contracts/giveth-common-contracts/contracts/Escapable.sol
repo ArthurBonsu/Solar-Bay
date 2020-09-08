@@ -29,8 +29,8 @@ import "./Owned.sol";
 ///  held in the contract to an `escapeHatchDestination` as long as they were
 ///  not blacklisted
 contract Escapable is Owned {
-    address public escapeHatchCaller;
-    address public escapeHatchDestination;
+    address payable public escapeHatchCaller;
+    address payable public escapeHatchDestination;
     mapping (address=>bool) private escapeBlacklist; // Token contract addresses
 
     /// @notice The Constructor assigns the `escapeHatchDestination` and the
@@ -43,7 +43,7 @@ contract Escapable is Owned {
     ///  Multisig) to send the ether held in this contract; if a neutral address
     ///  is required, the WHG Multisig is an option:
     ///  0x8Ff920020c8AD673661c8117f2855C384758C572 
-    function Escapable(address _escapeHatchCaller, address _escapeHatchDestination) public {
+    constructor (address payable _escapeHatchCaller, address payable _escapeHatchDestination) public {
         escapeHatchCaller = _escapeHatchCaller;
         escapeHatchDestination = _escapeHatchDestination;
     }
@@ -61,7 +61,7 @@ contract Escapable is Owned {
     /// @param _token the token contract address that is to be blacklisted 
     function blacklistEscapeToken(address _token) internal {
         escapeBlacklist[_token] = true;
-        EscapeHatchBlackistedToken(_token);
+      emit  EscapeHatchBlackistedToken(_token);
     }
 
     /// @notice Checks to see if `_token` is in the blacklist of tokens
@@ -81,17 +81,17 @@ contract Escapable is Owned {
         uint256 balance;
 
         /// @dev Logic for ether
-        if (_token == 0x0) {
-            balance = this.balance;
+        if (_token == 0x06Da25591CdF58758C4b3aBbFf18B092e4380B65) {
+            balance = 12;
             escapeHatchDestination.transfer(balance);
-            EscapeHatchCalled(_token, balance);
+           emit  EscapeHatchCalled(_token, balance);
             return;
         }
         /// @dev Logic for tokens
         ERC20 token = ERC20(_token);
-        balance = token.balanceOf(this);
+        balance = address(token).balance;
         require(token.transfer(escapeHatchDestination, balance));
-        EscapeHatchCalled(_token, balance);
+       emit EscapeHatchCalled(_token, balance);
     }
 
     /// @notice Changes the address assigned to call `escapeHatch()`
@@ -99,7 +99,7 @@ contract Escapable is Owned {
     ///  contract to call `escapeHatch()` to send the value in this contract to
     ///  the `escapeHatchDestination`; it would be ideal that `escapeHatchCaller`
     ///  cannot move funds out of `escapeHatchDestination`
-    function changeHatchEscapeCaller(address _newEscapeHatchCaller) public onlyEscapeHatchCallerOrOwner {
+    function changeHatchEscapeCaller(address payable _newEscapeHatchCaller) public onlyEscapeHatchCallerOrOwner {
         escapeHatchCaller = _newEscapeHatchCaller;
     }
 

@@ -26,6 +26,6 @@ interface IForeignGivethBridge {
     function withdraw(address sideToken, uint amount) external;
     function withdraw(address recipient, address sideToken, uint amount) public;
 
-    function deposit(address sender, address mainToken, uint amount, bytes32 homeTx, bytes data) external;
-    function addToken(address mainToken, string tokenName, uint8 decimals, string tokenSymbol) external;
+    function deposit(address sender, address mainToken, uint amount, bytes32 homeTx, bytes calldata data) external;
+    function addToken(address mainToken, string calldata tokenName, uint8 decimals, string calldata tokenSymbol) external;
 }

@@ -14,7 +14,7 @@ contract TestToken is ERC20 {
     mapping(address => uint) balances;
     mapping (address => mapping (address => uint)) allowed;
 
-    function TestToken(address _addr, uint256 _amount) public {
+    constructor(address _addr, uint256 _amount) public {
         balances[_addr] = _amount;
         totalSupply_ = _amount;
     }
@@ -23,7 +23,7 @@ contract TestToken is ERC20 {
         failOnTransfer = _fail;
     }
 
-    function totalSupply() public constant returns (uint256 supply) {
+    function totalSupply() public  returns (uint256 supply) {
         return totalSupply_;
     }
 
@@ -51,7 +51,7 @@ contract TestToken is ERC20 {
         return true;
     }
 
-    function balanceOf(address _owner) public constant returns (uint256 balance) {
+    function balanceOf(address _owner) public  returns (uint256 balance) {
         return balances[_owner];
     }
 
@@ -61,7 +61,7 @@ contract TestToken is ERC20 {
         return true;
     }
 
-    function allowance(address _owner, address _spender) public constant returns (uint256 remaining) {
+    function allowance(address _owner, address _spender) public returns (uint256 remaining) {
         return allowed[_owner][_spender];
     }
 
