@@ -58,8 +58,12 @@ contract MiniMeToken is Controlled {
 
     // `parentToken` is the Token address that was cloned to produce this token;
     //  it will be 0x0 for a token that was not cloned
-    MiniMeToken  public parentToken;
-
+    // Does it always have to be the same as MimeToken's address?
+    // Here we made sure it was MiniMeToken address
+   MiniMeToken public parentTokenClone;
+   MiniMeToken  public parentToken;
+       
+   
     // `parentSnapShotBlock` is the block number from the Parent Token that was
     //  used to determine the initial distribution of the Clone Token
     uint public parentSnapShotBlock;
@@ -114,7 +118,7 @@ contract MiniMeToken is Controlled {
         name = _tokenName;                                 // Set the name
         decimals = _decimalUnits;                          // Set the decimals
         symbol = _tokenSymbol;                             // Set the symbol
-        parentToken = MiniMeToken(_parentToken);
+        address(this) = _parentToken;
         parentSnapShotBlock = _parentSnapShotBlock;
         transfersEnabled = _transfersEnabled;
         creationBlock = block.number;
@@ -173,11 +177,11 @@ contract MiniMeToken is Controlled {
            require(parentSnapShotBlock < block.number);
 
            // Do not allow transfer to 0x0 or the token contract itself
-           require((_to != 0) && (_to != address(this)));
+           require((_to != address(0)) && (_to != address(this)));
 
            // If the amount being transfered is more than the balance of the
            //  account the transfer returns false
-           var previousBalanceFrom = balanceOfAt(_from, block.number);
+          uint256 previousBalanceFrom = balanceOfAt(_from, block.number);
            if (previousBalanceFrom < _amount) {
                return false;
            }
@@ -193,12 +197,12 @@ contract MiniMeToken is Controlled {
 
            // Then update the balance array with the new value for the address
            //  receiving the tokens
-           var previousBalanceTo = balanceOfAt(_to, block.number);
+           uint256 previousBalanceTo = balanceOfAt(_to, block.number);
            require(previousBalanceTo + _amount >= previousBalanceTo); // Check for overflow
            updateValueAtNow(balances[_to], previousBalanceTo + _amount);
 
            // An event to make the transfer easy to find on the blockchain
-           Transfer(_from, _to, _amount);
+           emit Transfer(_from, _to, _amount);
 
            return true;
     }
@@ -230,7 +234,7 @@ contract MiniMeToken is Controlled {
         }
 
         allowed[msg.sender][_spender] = _amount;
-        Approval(msg.sender, _spender, _amount);
+       emit  Approval(msg.sender, _spender, _amount);
         return true;
     }
 
@@ -257,8 +261,7 @@ contract MiniMeToken is Controlled {
 
         ApproveAndCallFallBack(_spender).receiveApproval(
             msg.sender,
-            _amount,
-            this,
+            _amount,address(this),
             _extraData
         );
 
@@ -290,8 +293,9 @@ contract MiniMeToken is Controlled {
         //  this token
         if ((balances[_owner].length == 0)
             || (balances[_owner][0].fromBlock > _blockNumber)) {
-            if (address(parentToken) != 0) {
-                return parentToken.balanceOfAt(_owner, min(_blockNumber, parentSnapShotBlock));
+            if (address(parentToken) != address(0)) {
+                    
+             return parentToken.balanceOfAt( _owner, min(_blockNumber, parentSnapShotBlock));
             } else {
                 // Has no parent
                 return 0;
@@ -306,7 +310,7 @@ contract MiniMeToken is Controlled {
     /// @notice Total amount of tokens at a specific `_blockNumber`.
     /// @param _blockNumber The block number when the totalSupply is queried
     /// @return The total amount of tokens at `_blockNumber`
-    function totalSupplyAt(uint _blockNumber) public  returns(uint) {
+    function totalSupplyAt( uint _blockNumber) public  returns(uint) {
 
         // These next few lines are used when the totalSupply of the token is
         //  requested before a check point was ever created for this token, it
@@ -315,8 +319,10 @@ contract MiniMeToken is Controlled {
         //  token at this block number.
         if ((totalSupplyHistory.length == 0)
             || (totalSupplyHistory[0].fromBlock > _blockNumber)) {
-            if (address(parentToken) != 0) {
-                return parentToken.totalSupplyAt(min(_blockNumber, parentSnapShotBlock));
+            if (address(parentToken) != address(0)) {
+
+                 
+                return parentToken.totalSupplyAt( min(_blockNumber, parentSnapShotBlock));
             } else {
                 return 0;
             }
@@ -350,7 +356,7 @@ contract MiniMeToken is Controlled {
         ) public returns(address) {
         if (_snapshotBlock == 0) _snapshotBlock = block.number;
         MiniMeToken cloneToken = tokenFactory.createCloneToken(
-            this,
+            address(this),
             _snapshotBlock,
             _cloneTokenName,
             _cloneDecimalUnits,
@@ -361,7 +367,7 @@ contract MiniMeToken is Controlled {
         cloneToken.changeController(msg.sender);
 
         // An event to make the token easy to find on the blockchain
-        NewCloneToken(address(cloneToken), _snapshotBlock);
+      emit  NewCloneToken(address(cloneToken), _snapshotBlock);
         return address(cloneToken);
     }
 
@@ -381,7 +387,7 @@ contract MiniMeToken is Controlled {
         require(previousBalanceTo + _amount >= previousBalanceTo); // Check for overflow
         updateValueAtNow(totalSupplyHistory, curTotalSupply + _amount);
         updateValueAtNow(balances[_owner], previousBalanceTo + _amount);
-        Transfer(0, _owner, _amount);
+       emit Transfer(0, _owner, _amount);
         return true;
     }
 
@@ -398,7 +404,7 @@ contract MiniMeToken is Controlled {
         require(previousBalanceFrom >= _amount);
         updateValueAtNow(totalSupplyHistory, curTotalSupply - _amount);
         updateValueAtNow(balances[_owner], previousBalanceFrom - _amount);
-        Transfer(_owner, 0, _amount);
+       emit Transfer(_owner, 0, _amount);
         return true;
     }
 
